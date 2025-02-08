@@ -2,7 +2,7 @@
   "name": "adb-wifi-connect",
   "type": "module",
   "main": "dist/index.js",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "repository": "https://github.com/rubengees/adb-wifi-connect",
   "author": "Ruben Gees <rubengees7@gmail.com>",
   "bin": {
