@@ -6,7 +6,7 @@ Connect to your Android device with adb over Wi-Fi.
 npx adb-wifi-connect
 ```
 
-<details open>
+<details>
 <summary>bun</summary>
 
 ```shell
@@ -15,7 +15,7 @@ bunx adb-wifi-connect
 
 </details>
 
-<details open>
+<details>
 <summary>pnpm</summary>
 
 ```shell
@@ -24,7 +24,7 @@ pnpm dlx adb-wifi-connect
 
 </details>
 
-<details open>
+<details>
 <summary>yarn</summary>
 
 ```shell
