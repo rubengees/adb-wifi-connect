@@ -1,41 +1,51 @@
 {
   "name": "adb-wifi-connect",
-  "type": "module",
-  "main": "dist/index.js",
   "version": "0.2.1",
-  "repository": "https://github.com/rubengees/adb-wifi-connect",
+  "keywords": [
+    "adb",
+    "android",
+    "connect",
+    "mdns",
+    "wifi"
+  ],
   "author": "Ruben Gees <rubengees7@gmail.com>",
+  "repository": "https://github.com/rubengees/adb-wifi-connect",
   "bin": {
     "adb-wifi-connect": "dist/index.js"
   },
   "files": [
     "dist"
   ],
-  "keywords": [
-    "adb",
-    "wifi",
-    "connect",
-    "android",
-    "mdns"
-  ],
+  "type": "module",
+  "main": "dist/index.js",
   "scripts": {
-    "dev": "tsx index.ts",
-    "build": "tsc",
-    "start": "node dist/index.js"
+    "dev": "node --watch index.ts",
+    "build": "tsgo",
+    "start": "node dist/index.js",
+    "lint": "oxlint",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
+    "check": "tsgo --noEmit",
+    "verify": "pnpm format:check && pnpm lint && pnpm check"
   },
   "dependencies": {
     "@astronautlabs/mdns": "^1.0.10",
-    "execa": "^9.5.2",
+    "execa": "^9.6.1",
     "qrcode": "^1.5.4"
   },
   "devDependencies": {
-    "@tsconfig/node-lts": "^22.0.1",
-    "@types/node": "^22.13.1",
-    "@types/qrcode": "^1.5.5",
-    "prettier": "^3.4.2",
-    "tsx": "^4.19.2"
+    "@tsconfig/node20": "^20.1.9",
+    "@types/node": "^20.19.39",
+    "@types/qrcode": "^1.5.6",
+    "@typescript/native-preview": "7.0.0-dev.20260418.1",
+    "oxfmt": "^0.45.0",
+    "oxlint": "^1.60.0",
+    "oxlint-tsgolint": "^0.21.1",
+    "prettier": "^3.8.3",
+    "tsx": "^4.21.0"
   },
-  "peerDependencies": {
-    "typescript": "^5.7.3"
-  }
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "pnpm@10.33.0+sha512.10568bb4a6afb58c9eb3630da90cc9516417abebd3fabbe6739f0ae795728da1491e9db5a544c76ad8eb7570f5c4bb3d6c637b2cb41bfdcdb47fa823c8649319"
 }

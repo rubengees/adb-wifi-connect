@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
-import { Browser, Service } from "@astronautlabs/mdns"
+import type { Service } from "@astronautlabs/mdns"
+import { Browser } from "@astronautlabs/mdns"
 import { execa } from "execa"
 import QRCode from "qrcode"
 
