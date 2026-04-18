@@ -1,0 +1,28 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:best-practices", "schedule:weekly"],
+  "automerge": true,
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "all non-major dependencies",
+      "groupSlug": "all-minor-patch"
+    },
+    {
+      "matchUpdateTypes": ["major"],
+      "automerge": false,
+      "dependencyDashboardApproval": true
+    },
+    {
+      "matchPackageNames": ["@types/node"],
+      "allowedVersions": "^20",
+      "description": "Keep @types/node aligned with the project's minimum Node.js target (>=20)"
+    },
+    {
+      "matchPackageNames": ["@tsconfig/node20"],
+      "matchUpdateTypes": ["replacement"],
+      "enabled": false,
+      "description": "Prevent replacing @tsconfig/node20 to align with the project's minimum Node.js target (>=20)"
+    }
+  ]
+}
