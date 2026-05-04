@@ -3,7 +3,7 @@
 import type { Service } from "@astronautlabs/mdns"
 import { Browser } from "@astronautlabs/mdns"
 import { execa } from "execa"
-import QRCode from "qrcode"
+import { renderUnicodeCompact } from "uqr"
 
 const name = `ADB_WIFI_${randomString(5)}`
 const password = randomString(5)
@@ -35,7 +35,7 @@ const connectBrowser = new Browser("_adb-tls-connect._tcp")
       } else if (result.stdout.includes("failed to connect")) {
         console.log("Device found, but couldn't connect. Scan the QR-Code to pair:")
         console.log()
-        console.log(await QRCode.toString(generateWifiConfig(name, password), { type: "terminal", small: true }))
+        console.log(renderUnicodeCompact(generateWifiConfig(name, password)))
       } else {
         console.error(`Failed to connect to device ${device}:`, result.stdout)
       }
