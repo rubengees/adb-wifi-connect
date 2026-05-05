@@ -5,96 +5,56 @@ import { Browser } from "@astronautlabs/mdns"
 import { execa } from "execa"
 import { renderUnicodeCompact } from "uqr"
 
-const name = `ADB_WIFI_${randomString(5)}`
-const password = randomString(5)
-
-let discoveredDevice = ""
-
-try {
-  await execa("adb", ["start-server"])
-} catch (e) {
-  console.error("Failed to start adb server:", e)
-  process.exit(-1)
-}
+const pairingName = `ADB_WIFI_${randomString(5)}`
+const pairingPassword = randomString(5)
 
 console.log("Waiting for device...")
 
 const connectBrowser = new Browser("_adb-tls-connect._tcp")
   .on("serviceUp", async (service: Service) => {
-    const device = serviceToDevice(service)
-    discoveredDevice = device
-
-    console.log(`Discovered device ${device}. Connecting...`)
+    console.log(`Discovered device ${service.name}. Connecting...`)
 
     try {
-      const result = await execa("adb", ["connect", device])
+      const mdnsHost = `${service.name}._adb-tls-connect._tcp`
+      const { stdout } = await execa("adb", ["connect", mdnsHost])
 
-      if (result.stdout.includes("connected to")) {
+      if (/^(connected|already connected) to /im.test(stdout)) {
         console.log("Connected!")
-        exit(0)
-      } else if (result.stdout.includes("failed to connect")) {
-        console.log("Device found, but couldn't connect. Scan the QR-Code to pair:")
-        console.log()
-        console.log(renderUnicodeCompact(generateWifiConfig(name, password)))
-      } else {
-        console.error(`Failed to connect to device ${device}:`, result.stdout)
+        exit()
       }
-    } catch (e) {
-      console.error(`ADB connect command failed:`, e)
-    }
-  })
-  .on("serviceDown", (service: Service) => {
-    const device = serviceToDevice(service)
 
-    if (discoveredDevice === device) {
-      discoveredDevice = ""
+      console.log("Device found, but couldn't connect. Scan the QR-Code to pair:")
+      console.log()
+      console.log(renderUnicodeCompact(`WIFI:T:ADB;S:${pairingName};P:${pairingPassword};;`))
+    } catch (e) {
+      console.error("ADB connect command failed:", e)
+      exit(1)
     }
   })
   .start()
 
 const pairingBrowser = new Browser("_adb-tls-pairing._tcp")
   .on("serviceUp", async (service: Service) => {
-    const device = serviceToDevice(service)
+    if (service.name !== pairingName) return
 
-    console.log(`Pairing with device ${device}...`)
+    const pairAddress = `${service.addresses[0]}:${service.port}`
+    console.log(`Pairing at ${pairAddress}...`)
 
     try {
-      await execa("adb", ["pair", device, password])
+      await execa("adb", ["pair", pairAddress, pairingPassword])
+      console.log("Paired and connected!")
+      exit()
     } catch (e) {
       console.error("ADB pair command failed:", e)
-    }
-
-    if (discoveredDevice) {
-      try {
-        const result = await execa("adb", ["connect", discoveredDevice])
-
-        if (result.stdout.includes("connected to")) {
-          console.log("Connected!")
-          exit()
-        } else {
-          console.error(`Failed to connect to device ${discoveredDevice}:`, result.stdout)
-        }
-      } catch (e) {
-        console.error("ADB connect command failed:", e)
-      }
+      exit(1)
     }
   })
   .start()
 
-process.on("SIGINT", () => {
-  exit()
-})
+process.on("SIGINT", () => exit())
 
 function randomString(length: number) {
   return Array.from({ length }, () => Math.random().toString(36)[2]).join("")
-}
-
-function serviceToDevice(service: Service) {
-  return `${service.addresses[0]}:${service.port}`
-}
-
-function generateWifiConfig(name: string, password: string) {
-  return `WIFI:T:ADB;S:${name};P:${password};;`
 }
 
 function exit(code: number = 0) {
