@@ -3,3 +3,5 @@ allowBuilds:
 blockExoticSubdeps: true
 minimumReleaseAge: 1440
 trustPolicy: no-downgrade
+overrides:
+  undici-types: "^6.25.0"

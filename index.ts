@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-import { randomBytes } from "node:crypto"
 import { isIPv4 } from "node:net"
 import { DnsSdBrowser } from "dns-sd-browser"
 import { execa, ExecaError } from "execa"
@@ -58,7 +57,7 @@ async function pair(name: string, password: string) {
 function randomString(length: number) {
   const alphabet = "0123456789abcdefghijklmnopqrstuvwxyz"
 
-  return Array.from(randomBytes(length), (byte) => alphabet[byte % alphabet.length]).join("")
+  return Array.from(crypto.getRandomValues(new Uint8Array(length)), (byte) => alphabet[byte % alphabet.length]).join("")
 }
 
 function handleAdbError(error: unknown): never {
