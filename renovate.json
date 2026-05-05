@@ -26,6 +26,11 @@
       "description": "Keep @types/node aligned with the project's minimum Node.js target (>=22)"
     },
     {
+      "matchPackageNames": ["undici-types"],
+      "allowedVersions": "^6",
+      "description": "Keep undici-types at version 6 to match @types/node^22"
+    },
+    {
       "matchPackageNames": ["@tsconfig/node22"],
       "matchUpdateTypes": ["replacement"],
       "enabled": false,
