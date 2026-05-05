@@ -8,9 +8,9 @@ importers:
 
   .:
     dependencies:
-      '@astronautlabs/mdns':
-        specifier: ^1.0.10
-        version: 1.0.10
+      dns-sd-browser:
+        specifier: ^1.1.0
+        version: 1.1.0
       execa:
         specifier: ^9.6.1
         version: 9.6.1
@@ -44,9 +44,6 @@ importers:
         version: 4.21.0
 
 packages:
-
-  '@astronautlabs/mdns@1.0.10':
-    resolution: {integrity: sha512-9bVdQ15Tbzpor1z/bteaemC9NvRDZgMD4Cfbu1/r/6Zv6fCBXvIJJoJ6Dh/BMvTlAiT2Xewm36i0VWRnZ4yw6A==}
 
   '@esbuild/aix-ppc64@0.27.7':
     resolution: {integrity: sha512-EKX3Qwmhz1eMdEJokhALr0YiD0lhQNwDqkPYyPhiSwKrh7/4KRjQc04sZ8db+5DVVnZ1LmbNDI1uAMPEUBnQPg==}
@@ -534,6 +531,10 @@ packages:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
     engines: {node: '>= 8'}
 
+  dns-sd-browser@1.1.0:
+    resolution: {integrity: sha512-CdGPEIgiPn592BdiMgcSXISm8Rs7IA3SOdCnKPxv0i5EjumdteAfxmp101Y9/vAxJ+fLghFcEYtTaAROv46PyA==}
+    engines: {node: '>=18.20.0'}
+
   esbuild@0.27.7:
     resolution: {integrity: sha512-IxpibTjyVnmrIQo5aqNpCgoACA/dTKLTlhMHihVHhdkxKyPO1uBBthumT0rdHmcsk9uMonIWS0m4FljWzILh3w==}
     engines: {node: '>=18'}
@@ -670,8 +671,6 @@ packages:
     engines: {node: '>=18'}
 
 snapshots:
-
-  '@astronautlabs/mdns@1.0.10': {}
 
   '@esbuild/aix-ppc64@0.27.7':
     optional: true
@@ -929,6 +928,8 @@ snapshots:
       path-key: 3.1.1
       shebang-command: 2.0.0
       which: 2.0.2
+
+  dns-sd-browser@1.1.0: {}
 
   esbuild@0.27.7:
     optionalDependencies:

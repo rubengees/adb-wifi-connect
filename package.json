@@ -29,7 +29,7 @@
     "verify": "pnpm format:check && pnpm lint && pnpm check"
   },
   "dependencies": {
-    "@astronautlabs/mdns": "^1.0.10",
+    "dns-sd-browser": "^1.1.0",
     "execa": "^9.6.1",
     "uqr": "^0.1.3"
   },
