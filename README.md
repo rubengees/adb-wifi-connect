@@ -1,5 +1,8 @@
 # adb-wifi-connect
 
+[![CI](https://github.com/rubengees/adb-wifi-connect/actions/workflows/ci.yml/badge.svg)](https://github.com/rubengees/adb-wifi-connect/actions/workflows/ci.yml)
+[![NPM](https://img.shields.io/npm/v/adb-wifi-connect)](https://www.npmjs.com/package/adb-wifi-connect)
+
 Connect to your Android device with adb over Wi-Fi.
 
 ```shell
