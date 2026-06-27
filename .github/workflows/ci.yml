@@ -30,3 +30,4 @@ jobs:
 
       - run: pnpm install
       - run: pnpm verify
+      - run: pnpm build
