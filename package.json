@@ -19,7 +19,7 @@
   "type": "module",
   "scripts": {
     "dev": "oxnode --watch index.ts",
-    "build": "tsgo",
+    "build": "tsc",
     "start": "node dist/index.js",
     "lint": "oxlint",
     "format": "oxfmt",
