@@ -36,9 +36,9 @@
     "@oxc-node/cli": "0.1.0",
     "@tsconfig/node22": "22.0.5",
     "@types/node": "22.20.0",
-    "oxfmt": "0.56.0",
-    "oxlint": "1.71.0",
-    "oxlint-tsgolint": "0.23.0",
+    "oxfmt": "0.57.0",
+    "oxlint": "1.72.0",
+    "oxlint-tsgolint": "0.24.0",
     "typescript": "7.0.1-rc"
   },
   "engines": {
