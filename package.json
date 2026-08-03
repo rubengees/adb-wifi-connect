@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "dns-sd-browser": "^1.1.0",
-    "execa": "^9.6.1",
+    "execa": "^10.0.0",
     "uqr": "^0.1.3"
   },
   "devDependencies": {
