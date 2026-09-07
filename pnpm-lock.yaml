@@ -671,8 +671,8 @@ packages:
     engines: {node: '>=16.20.0'}
     hasBin: true
 
-  undici-types@6.28.0:
-    resolution: {integrity: sha512-FnO9H9rmJvJbP5Mwy0XICbDezlIKf6WYRkDMCm8uukbHlKWMzmD5jodVA7F1k+TrAiZhWieDcoFayjVN5mnGUg==}
+  undici-types@6.28.1:
+    resolution: {integrity: sha512-8sc9COfigHECtZwvbJdkTu3zy+U4HHmJVceTSl8T+RSWBCupR+6SGzWf+hUoklc3DxBUBzGbTQzYBFLpafwLOw==}
 
   unicorn-magic@0.3.0:
     resolution: {integrity: sha512-+QBBXBCvifc56fsbuxZQ6Sic3wqqc3WWaqxs58gvJrcOuN83HGTCwz3oS5phzU9LthRNE9VrJCFCLUgHeeFnfA==}
@@ -941,7 +941,7 @@ snapshots:
 
   '@types/node@22.20.1':
     dependencies:
-      undici-types: 6.28.0
+      undici-types: 6.28.1
 
   '@typescript/typescript-aix-ppc64@7.0.2':
     optional: true
@@ -1140,7 +1140,7 @@ snapshots:
       '@typescript/typescript-win32-arm64': 7.0.2
       '@typescript/typescript-win32-x64': 7.0.2
 
-  undici-types@6.28.0: {}
+  undici-types@6.28.1: {}
 
   unicorn-magic@0.3.0: {}
 
