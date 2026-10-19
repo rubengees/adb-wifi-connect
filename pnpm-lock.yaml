@@ -174,7 +174,7 @@ importers:
         version: 1.1.0
       execa:
         specifier: ^10.0.0
-        version: 10.1.1
+        version: 10.2.0
       uqr:
         specifier: ^0.1.3
         version: 0.1.3
@@ -707,8 +707,8 @@ packages:
     resolution: {integrity: sha512-CdGPEIgiPn592BdiMgcSXISm8Rs7IA3SOdCnKPxv0i5EjumdteAfxmp101Y9/vAxJ+fLghFcEYtTaAROv46PyA==}
     engines: {node: '>=18.20.0'}
 
-  execa@10.1.1:
-    resolution: {integrity: sha512-yJAC9ulsE6fU0K6wzJBIH+wI+KAtMeu6Ck8rs23OVzvEhqXjGADdI6K+YNIDAjcQQ6AwXTD96cKExJo6xFJXyg==}
+  execa@10.2.0:
+    resolution: {integrity: sha512-j1pFOVxaybMVCTNHSBuISL2KQcDS3KIE1wBmUp4n2X+1FgaQI2ZDJVy9TYxDyMCzYojRIMh9O8X/UoWZtxTJdw==}
     engines: {node: '>=22'}
 
   figures@6.1.0:
@@ -805,8 +805,8 @@ packages:
     engines: {node: '>=16.20.0'}
     hasBin: true
 
-  undici-types@6.29.0:
-    resolution: {integrity: sha512-yzE4aF6qGj7fE8lu8fE8LonY07kmMXs20QR1bG3JGJ+jXrVTLtgUBieEr74AQRChYyqHrhJm9IktT337qOQhng==}
+  undici-types@6.29.1:
+    resolution: {integrity: sha512-8ewZRMhr1pEZVOUITV/cBrtH8iz6juS76jNqam5zXA1LQuTjM5CcidoAEIp8u+3OJc7EWKfMhW7CBD2xJJVh4A==}
 
   unicorn-magic@0.3.0:
     resolution: {integrity: sha512-+QBBXBCvifc56fsbuxZQ6Sic3wqqc3WWaqxs58gvJrcOuN83HGTCwz3oS5phzU9LthRNE9VrJCFCLUgHeeFnfA==}
@@ -1039,7 +1039,7 @@ snapshots:
 
   '@types/node@22.20.5':
     dependencies:
-      undici-types: 6.29.0
+      undici-types: 6.29.1
 
   '@typescript/typescript-aix-ppc64@7.0.2':
     optional: true
@@ -1103,7 +1103,7 @@ snapshots:
 
   dns-sd-browser@1.1.0: {}
 
-  execa@10.1.1:
+  execa@10.2.0:
     dependencies:
       '@sindresorhus/merge-streams': 4.0.0
       figures: 6.1.0
@@ -1235,7 +1235,7 @@ snapshots:
       '@typescript/typescript-win32-arm64': 7.0.2
       '@typescript/typescript-win32-x64': 7.0.2
 
-  undici-types@6.29.0: {}
+  undici-types@6.29.1: {}
 
   unicorn-magic@0.3.0: {}
 
