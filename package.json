@@ -33,16 +33,16 @@
     "uqr": "^0.1.3"
   },
   "devDependencies": {
-    "@oxc-node/cli": "0.1.5",
+    "@oxc-node/cli": "0.1.7",
     "@tsconfig/node22": "22.0.6",
     "@types/node": "22.20.5",
-    "oxfmt": "0.72.0",
-    "oxlint": "1.87.0",
-    "oxlint-tsgolint": "7.0.2003",
+    "oxfmt": "0.73.0",
+    "oxlint": "1.88.0",
+    "oxlint-tsgolint": "7.0.2004",
     "typescript": "7.0.2"
   },
   "engines": {
     "node": ">=22"
   },
-  "packageManager": "pnpm@12.11.0+sha512.29ccb4d41fadc1b389060ca7e05bb30012ca04b1d1502c75bc0930421ea26d8cfb94a674e18c00dc4e81cc0661ab10d30d0259bebd122bcc04cff6a12f682cfb"
+  "packageManager": "pnpm@12.14.0+sha512.c18ba6d87993d3d164cb5e8948f32b2c06ee854487e06cd8d86781342fb3e5bb4634367034711e86802baa9c37bea906ce1929ad08d70884c97d801df13389a6"
 }
