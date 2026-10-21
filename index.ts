@@ -1,56 +1,57 @@
 #!/usr/bin/env node
 
-import { isIPv4 } from "node:net"
-import { DnsSdBrowser } from "dns-sd-browser"
+import { setTimeout } from "node:timers/promises"
 import { execa, ExecaError } from "execa"
 import { renderUnicodeCompact } from "uqr"
 
-await using mdns = new DnsSdBrowser()
+const { stdout: devices } = await execa("adb", ["devices"]).catch(handleAdbError)
+
+if (/^\S+\s+device\s*$/m.test(devices)) {
+  console.log("Already connected!")
+  process.exit(0)
+}
 
 console.log("Waiting for device...")
 
-for await (const event of mdns.browse("_adb-tls-connect._tcp")) {
-  if (event.type !== "serviceUp") continue
+const device = await waitForService("_adb-tls-connect._tcp")
+console.log(`Discovered device ${device.name}. Connecting...`)
 
-  const { name } = event.service
-  console.log(`Discovered device ${name}. Connecting...`)
+const { stdout } = await execa("adb", ["connect", `${device.name}._adb-tls-connect._tcp`]).catch(handleAdbError)
 
-  const { stdout } = await execa("adb", ["connect", `${name}._adb-tls-connect._tcp`]).catch(handleAdbError)
-
-  if (/^(connected|already connected) to /im.test(stdout)) {
-    console.log("Connected!")
-    process.exit(0)
-  }
-
-  const pairingName = `ADB_WIFI_${randomString(8)}`
-  const pairingPassword = randomString(12)
-
-  console.log(
-    "Device found, but couldn't connect. Scan the QR-Code in 'Wireless debugging > Pair device with QR code' to pair:",
-  )
-  console.log()
-  console.log(renderUnicodeCompact(`WIFI:T:ADB;S:${pairingName};P:${pairingPassword};;`))
-
-  await pair(pairingName, pairingPassword)
+if (/^(connected|already connected) to /im.test(stdout)) {
+  console.log("Connected!")
+  process.exit(0)
 }
 
-async function pair(name: string, password: string) {
-  for await (const pairingEvent of mdns.browse("_adb-tls-pairing._tcp")) {
-    if (pairingEvent.type !== "serviceUp" && pairingEvent.type !== "serviceUpdated") continue
+const pairingName = `ADB_WIFI_${randomString(8)}`
+const pairingPassword = randomString(12)
 
-    const { service } = pairingEvent
-    if (service.name !== name) continue
+console.log(
+  "Device found, but couldn't connect. Scan the QR-Code in 'Wireless debugging > Pair device with QR code' to pair:",
+)
+console.log()
+console.log(renderUnicodeCompact(`WIFI:T:ADB;S:${pairingName};P:${pairingPassword};;`))
 
-    const address = service.addresses.find((a) => isIPv4(a)) ?? service.addresses[0]
-    if (!address) continue
+const pairingService = await waitForService("_adb-tls-pairing._tcp", pairingName)
+console.log(`Pairing at ${pairingService.target}...`)
 
-    const target = `${address}:${service.port}`
-    console.log(`Pairing at ${target}...`)
+await execa("adb", ["pair", pairingService.target, pairingPassword]).catch(handleAdbError)
 
-    await execa("adb", ["pair", target, password]).catch(handleAdbError)
+console.log("Paired and connected!")
+process.exit(0)
 
-    console.log("Paired and connected!")
-    process.exit(0)
+async function waitForService(serviceType: string, name?: string) {
+  while (true) {
+    const { stdout } = await execa("adb", ["mdns", "services"]).catch(handleAdbError)
+
+    for (const line of stdout.split(/\r?\n/)) {
+      const [serviceName, type, target] = line.split("\t")
+      if (!serviceName || type !== serviceType || !target || (name && serviceName !== name)) continue
+
+      return { name: serviceName, target }
+    }
+
+    await setTimeout(50)
   }
 }
 

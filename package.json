@@ -28,7 +28,6 @@
     "verify": "pnpm format:check && pnpm lint && pnpm check"
   },
   "dependencies": {
-    "dns-sd-browser": "^1.1.0",
     "execa": "^10.0.0",
     "uqr": "^0.1.3"
   },
