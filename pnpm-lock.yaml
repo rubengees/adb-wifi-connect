@@ -171,7 +171,7 @@ importers:
     dependencies:
       execa:
         specifier: ^10.0.0
-        version: 10.2.0
+        version: 10.2.1
       uqr:
         specifier: ^0.1.3
         version: 0.1.3
@@ -700,8 +700,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  execa@10.2.0:
-    resolution: {integrity: sha512-j1pFOVxaybMVCTNHSBuISL2KQcDS3KIE1wBmUp4n2X+1FgaQI2ZDJVy9TYxDyMCzYojRIMh9O8X/UoWZtxTJdw==}
+  execa@10.2.1:
+    resolution: {integrity: sha512-/Bofl3ZBh2Q4/PG0W63qFzP5vDAypi8Zc90UWTBzaDNIYiX7apPOd0N6L8hG8CojUdq4V51adu8BObP+iVsSTw==}
     engines: {node: '>=22'}
 
   figures@6.1.0:
@@ -1094,7 +1094,7 @@ snapshots:
   '@typescript/typescript-win32-x64@7.0.2':
     optional: true
 
-  execa@10.2.0:
+  execa@10.2.1:
     dependencies:
       '@sindresorhus/merge-streams': 4.0.0
       figures: 6.1.0
